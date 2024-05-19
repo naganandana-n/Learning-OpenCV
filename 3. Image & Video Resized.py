@@ -1,6 +1,7 @@
 import cv2 as cv
 
 def rescaleFrame(frame, scale = 0.75):
+    # works for everything - images and videos
     width = int(frame.shape[1] * scale) # frame.shape[1] is width
     height = int(frame.shape[0] * scale) # frame.shape[0] is height
     dimensions = (width, height)
@@ -14,6 +15,12 @@ resized_image = rescaleFrame(img, scale=10)
 cv.imshow("Image", img)
 cv.imshow("Resized image", resized_image)
 cv.waitKey(0)
+
+def changeRes(width, height):
+    # only works for live video - webcam, or other live cams
+    # otherwise use rescaleFrame
+    capture.set(3, width)
+    capture.set(4, height)
 
 # resize video
 capture = cv.VideoCapture("Resources/dog.mp4")
